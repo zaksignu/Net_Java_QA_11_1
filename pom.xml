@@ -8,7 +8,6 @@
     <artifactId>NET_JavaQA_11_1</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
@@ -48,8 +47,9 @@
                         <goals>
                             <goal>report</goal>
                         </goals>
-                    </execution>
-                    <execution>
+                  </execution>
+
+                <execution>
                         <id>check</id>
                         <goals>
                             <goal>check</goal>
