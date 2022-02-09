@@ -1,56 +1,33 @@
 package ru.netology;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class PosterManagerTest {
 
-    /*
-        // PosterManager manager = new PosterManager();
-         FilmTile uno = new FilmTile(1,"MotoMoto","3","4");
-         FilmTile duo = new FilmTile(2,"Pinnokio","2","4");
-         FilmTile tres = new FilmTile(3,"TexasChainsawMassacre","3","4");
-         FilmTile cuatro = new FilmTile(4,"Lionking","3","4");
-
-         FilmTile cinco = new FilmTile(5,"Lomo","1","4");
-         FilmTile seis = new FilmTile(6,"Pidgo","3","4");
-         FilmTile siete = new FilmTile(7,"Konneko-san","3","4");
-         FilmTile ocho = new FilmTile(8,"X-wing","3","4");
-         FilmTile nueve = new FilmTile(9,"Pax_Imperia","3","4");
-         FilmTile diez = new FilmTile(10,"Jagged_Alliance","3","4");
-         FilmTile once = new FilmTile(11,"Alladin","5","4");
-         FilmTile doce = new FilmTile(12,"Scream","3","4");
-         FilmTile trece = new FilmTile(13,"Nikond70","3","4");
-         FilmTile catorce = new FilmTile(14,"Polaroid","2","4");
-         FilmTile quince = new FilmTile(15,"Spoon","3","4");
-         manager.addTile(uno);
-         manager.addTile(duo);
-         manager.addTile(tres);
-         manager.addTile(cuatro);
-         manager.addTile(cinco);
-         manager.addTile(seis);
-         manager.addTile(siete);
-         manager.addTile(nueve);
-         manager.addTile(diez);
-         manager.addTile(once);
-         manager.addTile(doce);
-         manager.addTile(trece);
-         manager.addTile(catorce);
-         manager.addTile(quince);
-         manager.addTile(ocho);
-
-    */
+    // Тест конструктора
+    // Тест установки дефолтного значения максимального количества выводимых фильмов
     @Test
     void shouldTestDefaultFilmShowLimit() {
         PosterManager manager = new PosterManager();
         int actual = manager.getFilmShowLimit();
-        int excpected = 5;
+        int excpected = 10;
         assertEquals(excpected, actual);
-
     }
 
+    // Тест конструктора
+    // Тест установки ненормального значения максимального количества выводимых фильмов
+    @Test
+    void shouldTestOutOfLimitFilmShowLimit() {
+        PosterManager manager = new PosterManager(-4);
+        int actual = manager.getFilmShowLimit();
+        int excpected = 10;
+        assertEquals(excpected, actual);
+    }
+
+    // Тест конструктора
+    // Тест установки  валидного значения максимального количества выводимых фильмов
     @Test
     void shouldTestCustomFilmShowLimit() {
         PosterManager manager = new PosterManager(7);
@@ -59,37 +36,7 @@ class PosterManagerTest {
         assertEquals(excpected, actual);
     }
 
-    @Test
-    void shouldTestNonNormalFilmShowLimit() {
-        PosterManager manager = new PosterManager(12);
-
-        FilmTile uno = new FilmTile(1, "MotoMoto", "3", "4");
-        FilmTile duo = new FilmTile(2, "Pinnokio", "2", "4");
-        FilmTile tres = new FilmTile(3, "TexasChainsawMassacre", "3", "4");
-        FilmTile cuatro = new FilmTile(4, "Lionking", "3", "4");
-        FilmTile cinco = new FilmTile(5,"Lomo","1","4");
-        FilmTile seis = new FilmTile(6,"Pidgo","3","4");
-        FilmTile siete = new FilmTile(7,"Konneko-san","3","4");
-        FilmTile ocho = new FilmTile(8,"X-wing","3","4");
-        FilmTile nueve = new FilmTile(9,"Pax_Imperia","3","4");
-        FilmTile diez = new FilmTile(10,"Jagged_Alliance","3","4");
-        manager.addTile(uno);
-        manager.addTile(duo);
-        manager.addTile(tres);
-        manager.addTile(cuatro);
-        manager.addTile(cinco);
-        manager.addTile(seis);
-        manager.addTile(siete);
-        manager.addTile(ocho);
-        manager.addTile(nueve);
-        manager.addTile(diez);
-        FilmTile[] actual = manager.showSomeTiles();
-        FilmTile[] excpected = {diez, nueve, ocho,siete, seis,cinco,cuatro , tres, duo, uno  };
-        assertArrayEquals(excpected, actual);
-
-    }
-
-
+    // Тест добавления фильма в ленту
     @Test
     void addTile() {
         PosterManager manager = new PosterManager();
@@ -102,6 +49,7 @@ class PosterManagerTest {
         assertArrayEquals(excpected, actual);
     }
 
+    // Тест вывода всей ленты
     @Test
     void showTiles() {
         PosterManager manager = new PosterManager();
@@ -115,10 +63,10 @@ class PosterManagerTest {
         manager.addTile(cuatro);
         FilmTile[] actual = manager.showTiles();
         FilmTile[] excpected = {uno, duo, tres, cuatro};
-
         assertArrayEquals(excpected, actual);
     }
 
+    // Штатный обратный вывод последних фильмов
     @Test
     void showSomeTilesStraightTest() {
         PosterManager manager = new PosterManager();
@@ -134,8 +82,9 @@ class PosterManagerTest {
         assertArrayEquals(excpected, actual);
     }
 
+    // Обратный вывод в случае когда в афише фильмов меньше чем заданно
     @Test
-    void showSomeTilesNonVslidFilmshow() {
+    void showSomeTilesNonValidFilmshow() {
         PosterManager manager = new PosterManager();
         FilmTile uno = new FilmTile(1, "MotoMoto", "3", "4");
         FilmTile duo = new FilmTile(2, "Pinnokio", "2", "4");

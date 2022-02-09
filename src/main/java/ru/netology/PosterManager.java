@@ -6,7 +6,7 @@ public class PosterManager {
 
     //Простой конструктор с значением лимита выдачи по-умолчанию
     public PosterManager() {
-        filmShowLimit = 5;
+        filmShowLimit = 10;
     }
 
     //Конструктор с выставлением требуемого лимит выдачи
@@ -14,7 +14,7 @@ public class PosterManager {
         if (filmShowLimit >= 1) {
             this.filmShowLimit = filmShowLimit;
         } else {
-            filmShowLimit = 5;
+            this.filmShowLimit = 10;
         }
     }
 
@@ -45,7 +45,7 @@ public class PosterManager {
 
         int length = tiles.length - 1;
         int p = 0;
-        if ((tiles.length - filmShowLimit) <=0) {
+        if ((tiles.length - filmShowLimit) <= 0) {
             filmShowLimit = tiles.length;
         }
         FilmTile[] tmp = new FilmTile[filmShowLimit];
