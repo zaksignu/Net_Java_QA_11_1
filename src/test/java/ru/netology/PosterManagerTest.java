@@ -66,7 +66,7 @@ class PosterManagerTest {
         assertArrayEquals(excpected, actual);
     }
 
-    // Штатный обратный вывод последних фильмов
+    //  вывод последних фильмов, лимит вывода < всей афиши
     @Test
     void showSomeTilesStraightTest() {
         PosterManager manager = new PosterManager();
@@ -82,7 +82,7 @@ class PosterManagerTest {
         assertArrayEquals(excpected, actual);
     }
 
-    // Обратный вывод в случае когда в афише фильмов меньше чем заданно
+    //  вывод последних фильмов, лимит вывода > всей афиши
     @Test
     void showSomeTilesNonValidFilmshow() {
         PosterManager manager = new PosterManager();
@@ -97,4 +97,23 @@ class PosterManagerTest {
         FilmTile[] excpected = {tres, duo, uno};
         assertArrayEquals(excpected, actual);
     }
+    //  вывод последних фильмов, лимит вывода = всей афиши
+    @Test
+    void showSomeTilesAnotherNonValidFilmshow() {
+        PosterManager manager = new PosterManager();
+        FilmTile uno = new FilmTile(1, "MotoMoto", "3", "4");
+        FilmTile duo = new FilmTile(2, "Pinnokio", "2", "4");
+        FilmTile tres = new FilmTile(3, "TexasChainsawMassacre", "3", "4");
+        FilmTile cuatro = new FilmTile(4, "Lionking", "3", "4");
+        manager.addTile(uno);
+        manager.addTile(duo);
+        manager.addTile(tres);
+        manager.addTile(cuatro);
+        manager.setFilmShowLimit(4);
+        FilmTile[] actual = manager.showSomeTiles();
+        FilmTile[] excpected = { cuatro, tres,duo, uno};
+        assertArrayEquals(excpected, actual);
+    }
+
+
 }
